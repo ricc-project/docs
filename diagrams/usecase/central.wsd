@@ -1,0 +1,22 @@
+@startuml central
+left to right direction
+    ' -- Central -- '
+    :Central: --> (Conectar a rede Mesh RF)
+    :Central: --> (Conectar a rede Ethernet)
+    :Central: --> (Armazenar dados enviados pelos nós da rede Mesh RF)
+    :Central: --> (Enviar dados dados da rede Mesh RF para o Servidor)
+    :Central: --> (Armazenar informação de configuração do usuário)
+    :Central: <-- (Receber dados enviados pelo servidor) : receber dados
+    :Central: --> (Ativar atuador conectado a rede Mesh RF)
+    :Central: --> (Detectar falha de conexão em algum nó da rede Mesh RF)
+    :Central: --> (Repassar falhas diagnosticadas pelos nós, para o servidor)
+
+    ' -- Servidor -- '
+    :Servidor: <-up- (Enviar dados dados da rede Mesh RF para o Servidor) : receber dados
+    :Servidor: -up-> (Receber dados enviados pelo servidor) : enviar dados
+    :Servidor: <-up- (Repassar falhas diagnosticadas pelos nós, para o servidor) : receber dados
+    
+    ' -- Atuador --'
+    :Atuador: <-up- (Ativar atuador conectado a rede Mesh RF)
+    :Estação: -|> Atuador
+@enduml

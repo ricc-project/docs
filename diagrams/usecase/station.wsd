@@ -1,0 +1,17 @@
+@startuml estação
+    left to right direction
+    ' -- Estação -- '
+    :Estação: --> (Conectar a rede Mesh RF)
+    :Estação: --> (Coletar dados dos sensores)
+    :Estação: --> (Armazenar dados coletados dos sensores)
+    :Estação: --> (Enviar dados para Central)
+    :Estação: --> (Ativar Atuador)
+    :Estação: --> (Notificar falha de sensores)
+
+    ' -- Central -- '
+    :Central: <-up- (Enviar dados para Central) : receber dados
+    :Central: <-up- (Notificar falha de sensores) : receber dados
+
+    ' -- Atuador -- '
+    :Atuador: <-up- (Ativar Atuador) : ligar irrigação
+@enduml

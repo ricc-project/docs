@@ -1,0 +1,29 @@
+@startuml user
+    left to right direction
+    ' -- User -- '
+    :User: --> (Efetuar cadastro no App)
+    :User: --> (Efetuar login no App)
+    :User: --> (Solicitar mudança de estado no atuador de irrigação)
+    :User: --> (Receber notificações sobre a plantação)
+    :User: --> (Configurar sistema de notificações)
+    :User: --> (Visualizar informações da Central)
+    :User: --> (Visualizar informações de Estação)
+    :User: --> (Visualizar informações de um atuador)
+
+    ' -- App -- '
+    :App: <-up- (Efetuar cadastro no App)
+    :App: <-up- (Efetuar login no App)
+    :App: <-up- (Solicitar mudança de estado no atuador de irrigação)
+    :App: <-up- (Receber notificações sobre a plantação)
+    :App: <-up- (Configurar sistema de notificações)
+    :App: <-up- (Visualizar informações da Central)
+    :App: <-up- (Visualizar informações de Estação)
+    :App: <-up- (Visualizar informações de um atuador)
+
+    :App: -up-> (Solicitar cadastro de usuário)
+    :App: -up-> (Solicitar login de usuário)
+    
+    :Server: <-up- (Solicitar cadastro de usuário)
+    :Server: <-up- (Solicitar login de usuário)
+
+@enduml

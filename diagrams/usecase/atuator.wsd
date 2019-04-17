@@ -1,0 +1,12 @@
+@startuml atuador
+    left to right direction
+    ' -- Atuador -- '
+    :Atuador: --> (Conectar a rede Mesh RF)
+    :Atuador: --> (Ativar bomba de irrigação)
+    :Atuador: --> (Desativar bomba de irrigação)
+    :Atuador: --> (Informar status)
+
+    ' -- Estação -- '
+    :Estação: <-- (Informar status) : receber dados
+
+@enduml

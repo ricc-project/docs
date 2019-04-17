@@ -1,0 +1,18 @@
+@startuml server
+    left to right direction
+    ' -- Server -- '
+    :Server: --> (Cadastrar novos usuários)
+    :Server: --> (Logar usuários)
+    :Server: --> (Receber dados de centrais)
+    :Server: --> (Armazenar dados de centrais)
+    :Server: --> (Criar notificações para usuários)
+@enduml
+
+
+
+
+
+
+
+
+

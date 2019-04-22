@@ -1,0 +1,72 @@
+@startuml server
+
+class User {
+    + string name
+    + string surname
+    + string email
+    + Central[] central_list
+    + string password
+    + Token token
+    + void add_central()
+    + void remove_central()
+}
+
+class Token {
+    - string value
+    + string get_value()
+}
+
+class Central {
+    + string mac_address
+    + Station[] station_list
+    + Config config
+    + void add_station()
+}
+
+class Config {
+    + bool automatic_irrigation
+}
+
+class Station {
+    + int id
+    + Sensor[] sensor_list
+}
+
+abstract class Sensor {
+
+}
+
+class SoilMoistureSensor {
+    + float moisture
+}
+
+class AirSensor {
+    + float umidity
+    + float temperature
+    + float pressure
+}
+
+class SoilTemperatureSensor {
+    + float temperature
+}
+
+class WindSensor {
+    + float speed
+    + uint direction
+}
+
+class RainfallSensor {
+    + uint rainfall
+}
+
+class SolarRadiationSensor {
+    + uint radiation
+}
+
+Sensor <|-- SoilMoistureSensor
+Sensor <|-- AirSensor
+Sensor <|-- SoilTemperatureSensor
+Sensor <|-- WindSensor
+Sensor <|-- RainFallSensor
+
+@enduml

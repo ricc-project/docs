@@ -25,5 +25,4 @@
     
     :Server: <-up- (Solicitar cadastro de usuário)
     :Server: <-up- (Solicitar login de usuário)
-
 @enduml

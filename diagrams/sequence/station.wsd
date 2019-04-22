@@ -1,0 +1,7 @@
+@startuml
+    EdgeStation -> RouterStation : Package mailing request
+    EdgeStation <-- RouterStation : Package mailing response
+    EdgeStation -> RouterStation : Send data package
+    RouterStation -> Central : Resend data package
+    Central -> Server : Upload data
+@enduml

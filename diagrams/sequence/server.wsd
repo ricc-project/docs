@@ -1,0 +1,4 @@
+@startuml
+    Central -> Server_API : Upload data
+    Server_API -> Database : Update database
+@enduml

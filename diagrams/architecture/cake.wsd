@@ -1,0 +1,34 @@
+@startuml architecture
+    left to right direction
+
+node Applicative{
+    rectangle AppProject{
+        folder NativeComponents
+        folder NativeModules
+        folder AngularComponents
+        folder AngularModules
+    }
+
+}
+node Server{
+    rectangle Nginx <<Reverse Proxy>>
+    rectangle DjangoDataRest <<Sensor Data API>>
+    rectangle DjangoServerRest <<Server API>>
+    rectangle RabbitMQ <<Message Broker>>
+}
+node IOT{
+    rectangle Central
+    entity MeshNode
+    rectangle Atuador
+    rectangle Estação
+}
+
+Central <=> Nginx : Internet
+Nginx <<->> RabbitMQ
+DjangoServerRest <<->> Nginx
+DjangoDataRest <<->> Nginx
+Central <-> MeshNode : Rede RF
+MeshNode <|-- Atuador : is
+MeshNode <|-- Estação : is
+Applicative ==> Nginx
+@enduml

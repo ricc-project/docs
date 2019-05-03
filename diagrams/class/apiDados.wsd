@@ -1,0 +1,81 @@
+@startuml server
+
+class User{
+    - string name
+    - string token
+    - string hashSalt
+    - string hashPass
+    + Sensor[] getSensors()
+    + Sensor[] getBlocksAsSensors()
+    + SensorBlock getSensorsAsBlock()
+}
+
+class SensorBlock{
+    - int id
+    + Sensor[] getSensors()
+}
+
+abstract class Sensor {
+    - string id
+    + Data[] getData()
+}
+abstract class Data {
+    + timestamp collectedAt
+    + json collect()
+}
+
+User "1" *-- "*" Sensor : register
+User "1" *-- "*" SensorBlock : register
+SensorBlock "1" *-- "*" Sensor : contains
+Sensor "1" *-- "*" Data : collects
+
+class IrrigationActuator{
+}
+class SoilSensor {
+}
+class AirSensor {
+}
+class WindSensor {
+}
+class RainFallSensor {
+}
+class SolarRadiationSensor {
+}
+
+Sensor <|-- AirSensor
+Sensor <|-- SoilSensor
+Sensor <|-- WindSensor
+Sensor <|-- RainFallSensor
+Sensor <|-- SolarRadiationSensor
+Sensor <|-- IrrigationActuator
+
+class SoilData{
+    + float moisture
+    + float temperature
+}
+class AirData{
+    + float humidity
+    + float temperature
+    + float pressure
+
+}
+class WindData{
+    + float speed
+    + uint direction
+}
+class RainData{
+    + uint rainfall
+}
+class SolarData{
+    + uint radiation
+}
+class ActuatorData{
+    + boolean status
+}
+Data <|-- SoilData
+Data <|-- AirData
+Data <|-- WindData
+Data <|-- RainData
+Data <|-- SolarData
+Data <|-- ActuatorData
+@enduml

@@ -1,72 +1,53 @@
 @startuml server
 
 class User {
-    + string name
-    + string surname
-    + string email
-    + Central[] central_list
-    + string password
-    + Token token
-    + void add_central()
-    + void remove_central()
+    - string name
+    - string surname
+    - string email
+    - string hashSalt
+    - string hashPass
+    + void addCentral()
+    + void removeCentral()
 }
 
 class Token {
     - string value
-    + string get_value()
+    + string getValue()
 }
 
 class Central {
-    + string mac_address
-    + Station[] station_list
-    + Config config
-    + void add_station()
+    - string macAddress
+    - string id
+    - Config config
+    + void addStation()
+    + void addActuator()
 }
-
+abstract class MeshNode{
+    - int id
+}
+class IrrigationActuator{
+    - boolean status
+    + boolean turnOn()
+    + boolean turnOff()
+}
 class Config {
-    + bool automatic_irrigation
+    - bool automatic_irrigation
 }
 
 class Station {
-    + int id
-    + Sensor[] sensor_list
+    - Sensor[] sensor_list
 }
 
-abstract class Sensor {
-
+class Sensor {
+    - int id
+    - string Name
 }
 
-class SoilMoistureSensor {
-    + float moisture
-}
-
-class AirSensor {
-    + float umidity
-    + float temperature
-    + float pressure
-}
-
-class SoilTemperatureSensor {
-    + float temperature
-}
-
-class WindSensor {
-    + float speed
-    + uint direction
-}
-
-class RainfallSensor {
-    + uint rainfall
-}
-
-class SolarRadiationSensor {
-    + uint radiation
-}
-
-Sensor <|-- SoilMoistureSensor
-Sensor <|-- AirSensor
-Sensor <|-- SoilTemperatureSensor
-Sensor <|-- WindSensor
-Sensor <|-- RainFallSensor
-
+Central "1" o-- "1" Config : has
+User "1" *-- "1" Token : uses
+User "1" o-- "*" Central : owns
+Central "1" o-- "*" MeshNode : connects
+Station "1" *-- "*" Sensor : collects 
+MeshNode <|-- Station
+MeshNode <|-- IrrigationActuator
 @enduml

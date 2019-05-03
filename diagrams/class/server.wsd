@@ -1,4 +1,5 @@
 @startuml server
+    
 
 class User {
     - string name

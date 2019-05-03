@@ -1,4 +1,5 @@
-@startuml server
+@startuml apiDados
+    left to right direction
 
 class User{
     - string name
